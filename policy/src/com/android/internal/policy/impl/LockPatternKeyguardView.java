@@ -56,11 +56,9 @@ import com.android.internal.telephony.IccCard;
 import com.android.internal.widget.LockPatternUtils;
 import com.android.internal.widget.LockScreenWidgetCallback;
 import com.android.internal.widget.TransportControlView;
+
 import com.android.internal.app.ThemeUtils;
-import com.android.internal.app.ThemeUtils;
-import com.android.internal.app.ThemeUtils;
-import com.android.internal.app.ThemeUtils;
-import com.android.internal.app.ThemeUtils;
+
 import java.io.IOException;
 
 
