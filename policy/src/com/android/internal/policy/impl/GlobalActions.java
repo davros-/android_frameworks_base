@@ -316,11 +316,7 @@ class GlobalActions implements DialogInterface.OnDismissListener, DialogInterfac
         // next: airplane mode
         mItems.add(mAirplaneModeOn);
 
-        // last: silent mode
-        if (SHOW_SILENT_TOGGLE) {
-            mItems.add(mSilentModeAction);
-        }
-
+        // next: users
         List<UserInfo> users = mContext.getPackageManager().getUsers();
         if (users.size() > 1) {
             UserInfo currentUser;
@@ -355,6 +351,11 @@ class GlobalActions implements DialogInterface.OnDismissListener, DialogInterfac
                 };
                 mItems.add(switchToUser);
             }
+        }
+
+        // last: silent mode
+        if (SHOW_SILENT_TOGGLE) {
+            mItems.add(mSilentModeAction);
         }
 
         mAdapter = new MyAdapter();
