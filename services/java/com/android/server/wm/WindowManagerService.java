@@ -5169,18 +5169,25 @@ public class WindowManagerService extends IWindowManager.Stub
     public void shutdown() {
         ShutdownThread.shutdown(getUiContext(), true);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> fafd6f9... Commit themes to AOKP:
     }
 
     // Called by window manager policy.  Not exposed externally.
     @Override
     public void rebootSafeMode() {
         ShutdownThread.rebootSafeMode(getUiContext(), true);
+<<<<<<< HEAD
+>>>>>>> fafd6f9... Commit themes to AOKP:
+=======
 >>>>>>> fafd6f9... Commit themes to AOKP:
     }
 
     // Called by window manager policy. Not exposed externally.
     @Override
+<<<<<<< HEAD
 <<<<<<< HEAD
     public void rebootSafeMode() {
 <<<<<<< HEAD
@@ -5195,6 +5202,10 @@ public class WindowManagerService extends IWindowManager.Stub
 <<<<<<< HEAD
     public void reboot() {
         ShutdownThread.reboot(mContext, null, true);
+=======
+    public void reboot(String reason) {
+        ShutdownThread.reboot(getUiContext(), reason, false);
+>>>>>>> fafd6f9... Commit themes to AOKP:
 =======
     public void reboot(String reason) {
         ShutdownThread.reboot(getUiContext(), reason, false);

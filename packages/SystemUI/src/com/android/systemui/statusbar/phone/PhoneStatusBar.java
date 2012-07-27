@@ -2504,8 +2504,11 @@ public class PhoneStatusBar extends BaseStatusBar {
             mCurrentTheme = (CustomTheme)newTheme.clone();
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             recreateStatusBar();
 =======
+=======
+>>>>>>> fafd6f9... Commit themes to AOKP:
 =======
 >>>>>>> fafd6f9... Commit themes to AOKP:
             try {
@@ -2514,6 +2517,9 @@ public class PhoneStatusBar extends BaseStatusBar {
                 // we're screwed here fellas
             }
 <<<<<<< HEAD
+<<<<<<< HEAD
+>>>>>>> fafd6f9... Commit themes to AOKP:
+=======
 >>>>>>> fafd6f9... Commit themes to AOKP:
 =======
 >>>>>>> fafd6f9... Commit themes to AOKP:
