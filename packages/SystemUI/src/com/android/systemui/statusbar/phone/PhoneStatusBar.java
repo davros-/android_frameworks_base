@@ -2505,8 +2505,11 @@ public class PhoneStatusBar extends BaseStatusBar {
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             recreateStatusBar();
 =======
+=======
+>>>>>>> fafd6f9... Commit themes to AOKP:
 =======
 >>>>>>> fafd6f9... Commit themes to AOKP:
 =======
@@ -2518,6 +2521,9 @@ public class PhoneStatusBar extends BaseStatusBar {
             }
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+>>>>>>> fafd6f9... Commit themes to AOKP:
+=======
 >>>>>>> fafd6f9... Commit themes to AOKP:
 =======
 >>>>>>> fafd6f9... Commit themes to AOKP:

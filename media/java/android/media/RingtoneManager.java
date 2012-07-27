@@ -376,8 +376,11 @@ public class RingtoneManager {
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
         return mCursor = new SortCursor(new Cursor[] { internalCursor, drmCursor, mediaCursor },
 =======
+=======
+>>>>>>> fafd6f9... Commit themes to AOKP:
 =======
 >>>>>>> fafd6f9... Commit themes to AOKP:
 =======
@@ -389,6 +392,9 @@ public class RingtoneManager {
                 themeRegularCursor, themeNotifCursor },
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+>>>>>>> fafd6f9... Commit themes to AOKP:
+=======
 >>>>>>> fafd6f9... Commit themes to AOKP:
 =======
 >>>>>>> fafd6f9... Commit themes to AOKP:
