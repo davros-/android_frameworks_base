@@ -102,6 +102,7 @@ import com.android.systemui.statusbar.policy.NetworkController;
 import com.android.systemui.statusbar.policy.NotificationRowLayout;
 
 import java.io.FileDescriptor;
+import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 
@@ -2501,7 +2502,15 @@ public class PhoneStatusBar extends BaseStatusBar {
         if (newTheme != null &&
                 (mCurrentTheme == null || !mCurrentTheme.equals(newTheme))) {
             mCurrentTheme = (CustomTheme)newTheme.clone();
+<<<<<<< HEAD
             recreateStatusBar();
+=======
+            try {
+                Runtime.getRuntime().exec("pkill -TERM -f com.android.systemui");
+            } catch (IOException e) {
+                // we're screwed here fellas
+            }
+>>>>>>> fafd6f9... Commit themes to AOKP:
         } else {
 
             if (mClearButton instanceof TextView) {

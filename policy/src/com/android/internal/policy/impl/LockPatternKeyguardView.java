@@ -24,6 +24,7 @@ import android.accounts.AuthenticatorException;
 import android.accounts.OperationCanceledException;
 import android.app.AlertDialog;
 import android.app.admin.DevicePolicyManager;
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
@@ -49,12 +50,16 @@ import android.view.View;
 import android.view.WindowManager;
 import android.view.accessibility.AccessibilityManager;
 
+<<<<<<< HEAD
 import com.android.internal.R;
 import com.android.internal.policy.impl.KeyguardUpdateMonitor.InfoCallbackImpl;
 import com.android.internal.telephony.IccCard;
 import com.android.internal.widget.LockPatternUtils;
 import com.android.internal.widget.LockScreenWidgetCallback;
 import com.android.internal.widget.TransportControlView;
+=======
+import com.android.internal.app.ThemeUtils;
+>>>>>>> fafd6f9... Commit themes to AOKP:
 
 import java.io.IOException;
 
@@ -93,6 +98,8 @@ public class LockPatternKeyguardView extends KeyguardViewBase {
 
     private boolean mScreenOn;
     private boolean mWindowFocused = false;
+    private Context mUiContext;
+
     private boolean mEnableFallback = false; // assume no fallback UI until we know better
 
     private boolean mShowLockBeforeUnlock = false;
@@ -166,6 +173,12 @@ public class LockPatternKeyguardView extends KeyguardViewBase {
          */
         Unknown
     }
+
+    private BroadcastReceiver mThemeChangeReceiver = new BroadcastReceiver() {
+        public void onReceive(Context context, Intent intent) {
+            mUiContext = null;
+        }
+    };
 
     /**
      * The current mode.
@@ -662,6 +675,12 @@ public class LockPatternKeyguardView extends KeyguardViewBase {
         addView(mUnlockScreen);
     }
 
+     @Override
+    protected void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        ThemeUtils.registerThemeChangeReceiver(mContext, mThemeChangeReceiver);
+    }
+
     @Override
     protected void onDetachedFromWindow() {
         mUpdateMonitor.removeCallback(mInfoCallback);
@@ -673,6 +692,9 @@ public class LockPatternKeyguardView extends KeyguardViewBase {
             // e.g., when device becomes unlocked
             mBiometricUnlock.stop();
         }
+
+        mContext.unregisterReceiver(mThemeChangeReceiver);
+        mUiContext = null;
 
         super.onDetachedFromWindow();
     }
@@ -1102,7 +1124,7 @@ public class LockPatternKeyguardView extends KeyguardViewBase {
 
     private void showDialog(String title, String message) {
         mHasDialog = true;
-        final AlertDialog dialog = new AlertDialog.Builder(mContext)
+        final AlertDialog dialog = new AlertDialog.Builder(getUiContext())
             .setTitle(title)
             .setMessage(message)
             .setNeutralButton(R.string.ok, null)
@@ -1126,6 +1148,13 @@ public class LockPatternKeyguardView extends KeyguardViewBase {
                 timeoutInSeconds);
 
         showDialog(null, message);
+    }
+
+    private Context getUiContext() {
+        if (mUiContext == null) {
+            mUiContext = ThemeUtils.createUiContext(mContext);
+        }
+        return mUiContext != null ? mUiContext : mContext;
     }
 
     private void showAlmostAtAccountLoginDialog() {
