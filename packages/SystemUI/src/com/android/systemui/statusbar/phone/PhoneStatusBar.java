@@ -2503,13 +2503,19 @@ public class PhoneStatusBar extends BaseStatusBar {
                 (mCurrentTheme == null || !mCurrentTheme.equals(newTheme))) {
             mCurrentTheme = (CustomTheme)newTheme.clone();
 <<<<<<< HEAD
+<<<<<<< HEAD
             recreateStatusBar();
 =======
+=======
+>>>>>>> fafd6f9... Commit themes to AOKP:
             try {
                 Runtime.getRuntime().exec("pkill -TERM -f com.android.systemui");
             } catch (IOException e) {
                 // we're screwed here fellas
             }
+<<<<<<< HEAD
+>>>>>>> fafd6f9... Commit themes to AOKP:
+=======
 >>>>>>> fafd6f9... Commit themes to AOKP:
         } else {
 

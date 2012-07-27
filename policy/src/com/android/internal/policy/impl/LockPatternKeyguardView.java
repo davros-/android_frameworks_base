@@ -51,12 +51,16 @@ import android.view.WindowManager;
 import android.view.accessibility.AccessibilityManager;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 import com.android.internal.R;
 import com.android.internal.policy.impl.KeyguardUpdateMonitor.InfoCallbackImpl;
 import com.android.internal.telephony.IccCard;
 import com.android.internal.widget.LockPatternUtils;
 import com.android.internal.widget.LockScreenWidgetCallback;
 import com.android.internal.widget.TransportControlView;
+=======
+import com.android.internal.app.ThemeUtils;
+>>>>>>> fafd6f9... Commit themes to AOKP:
 =======
 import com.android.internal.app.ThemeUtils;
 >>>>>>> fafd6f9... Commit themes to AOKP:

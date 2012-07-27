@@ -58,6 +58,11 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+
+import com.android.internal.app.ThemeUtils;
+>>>>>>> fafd6f9... Commit themes to AOKP:
 =======
 
 import com.android.internal.app.ThemeUtils;
@@ -92,6 +97,10 @@ class GlobalActions implements DialogInterface.OnDismissListener, DialogInterfac
     private final WindowManagerFuncs mWindowManagerFuncs;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+    private Context mUiContext;
+>>>>>>> fafd6f9... Commit themes to AOKP:
 =======
     private Context mUiContext;
 >>>>>>> fafd6f9... Commit themes to AOKP:
