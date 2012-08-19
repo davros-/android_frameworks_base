@@ -487,7 +487,7 @@ public class AudioManager {
                     if (mUseMasterVolume) {
                         setMasterMute(!isMasterMute());
                     } else {
-                        // TODO: Actually handle MUTE.
+                        toggleGlobalMute();
                     }
                 }
                 break;
@@ -959,6 +959,20 @@ public class AudioManager {
     }
 
     /**
+     * Toggles global mute state via ringer mode.
+     * @param streamType The suggested stream type that is to be muted
+     * @hide
+     */
+     public void toggleGlobalMute() {
+              IAudioService service = getService();
+              try {
+                  service.toggleGlobalMute();
+              } catch (RemoteException e) {
+                  Log.e(TAG, "Dead object in toggleGlobalMute", e);
+              }
+     }
+     
+     /**
      * forces the stream controlled by hard volume keys
      * specifying streamType == -1 releases control to the
      * logic.
