@@ -378,16 +378,22 @@ public class RingtoneManager {
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> parent of 26c7afd... Commit themes to AOKP:
         return mCursor = new SortCursor(new Cursor[] { internalCursor, drmCursor, mediaCursor },
 =======
 =======
 >>>>>>> fafd6f9... Commit themes to AOKP:
+<<<<<<< HEAD
 =======
 >>>>>>> fafd6f9... Commit themes to AOKP:
 =======
 >>>>>>> fafd6f9... Commit themes to AOKP:
 =======
 >>>>>>> fafd6f9... Commit themes to AOKP:
+=======
+>>>>>>> parent of 26c7afd... Commit themes to AOKP:
         final Cursor themeRegularCursor = getThemeRegularRingtones();
         final Cursor themeNotifCursor = getThemeNotificationRingtones();
 
@@ -397,12 +403,15 @@ public class RingtoneManager {
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> fafd6f9... Commit themes to AOKP:
 =======
 >>>>>>> fafd6f9... Commit themes to AOKP:
 =======
 >>>>>>> fafd6f9... Commit themes to AOKP:
 =======
+=======
+>>>>>>> parent of 26c7afd... Commit themes to AOKP:
 >>>>>>> fafd6f9... Commit themes to AOKP:
 =======
 >>>>>>> fafd6f9... Commit themes to AOKP:

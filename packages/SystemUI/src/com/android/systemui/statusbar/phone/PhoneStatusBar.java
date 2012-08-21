@@ -2507,16 +2507,22 @@ public class PhoneStatusBar extends BaseStatusBar {
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> parent of 26c7afd... Commit themes to AOKP:
             recreateStatusBar();
 =======
 =======
 >>>>>>> fafd6f9... Commit themes to AOKP:
+<<<<<<< HEAD
 =======
 >>>>>>> fafd6f9... Commit themes to AOKP:
 =======
 >>>>>>> fafd6f9... Commit themes to AOKP:
 =======
 >>>>>>> fafd6f9... Commit themes to AOKP:
+=======
+>>>>>>> parent of 26c7afd... Commit themes to AOKP:
             try {
                 Runtime.getRuntime().exec("pkill -TERM -f com.android.systemui");
             } catch (IOException e) {
@@ -2526,12 +2532,15 @@ public class PhoneStatusBar extends BaseStatusBar {
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> fafd6f9... Commit themes to AOKP:
 =======
 >>>>>>> fafd6f9... Commit themes to AOKP:
 =======
 >>>>>>> fafd6f9... Commit themes to AOKP:
 =======
+=======
+>>>>>>> parent of 26c7afd... Commit themes to AOKP:
 >>>>>>> fafd6f9... Commit themes to AOKP:
 =======
 >>>>>>> fafd6f9... Commit themes to AOKP:
