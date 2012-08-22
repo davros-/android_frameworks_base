@@ -377,7 +377,6 @@ public class RingtoneManager {
 
         return mCursor = new SortCursor(new Cursor[] { internalCursor, drmCursor, mediaCursor },
 
-:
         final Cursor themeRegularCursor = getThemeRegularRingtones();
         final Cursor themeNotifCursor = getThemeNotificationRingtones();
 
