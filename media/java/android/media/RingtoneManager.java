@@ -373,48 +373,16 @@ public class RingtoneManager {
         final Cursor drmCursor = mIncludeDrm ? getDrmRingtones() : null;
         final Cursor mediaCursor = getMediaRingtones();
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> parent of 26c7afd... Commit themes to AOKP:
+
+
         return mCursor = new SortCursor(new Cursor[] { internalCursor, drmCursor, mediaCursor },
-=======
-=======
->>>>>>> fafd6f9... Commit themes to AOKP:
-<<<<<<< HEAD
-=======
->>>>>>> fafd6f9... Commit themes to AOKP:
-=======
->>>>>>> fafd6f9... Commit themes to AOKP:
-=======
->>>>>>> fafd6f9... Commit themes to AOKP:
-=======
->>>>>>> parent of 26c7afd... Commit themes to AOKP:
+
+:
         final Cursor themeRegularCursor = getThemeRegularRingtones();
         final Cursor themeNotifCursor = getThemeNotificationRingtones();
 
         return mCursor = new SortCursor(new Cursor[] { internalCursor, drmCursor, mediaCursor,
                 themeRegularCursor, themeNotifCursor },
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
->>>>>>> fafd6f9... Commit themes to AOKP:
-=======
->>>>>>> fafd6f9... Commit themes to AOKP:
-=======
->>>>>>> fafd6f9... Commit themes to AOKP:
-=======
-=======
->>>>>>> parent of 26c7afd... Commit themes to AOKP:
->>>>>>> fafd6f9... Commit themes to AOKP:
-=======
->>>>>>> fafd6f9... Commit themes to AOKP:
                 MediaStore.Audio.Media.DEFAULT_SORT_ORDER);
     }
 
