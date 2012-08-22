@@ -2502,48 +2502,12 @@ public class PhoneStatusBar extends BaseStatusBar {
         if (newTheme != null &&
                 (mCurrentTheme == null || !mCurrentTheme.equals(newTheme))) {
             mCurrentTheme = (CustomTheme)newTheme.clone();
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> parent of 26c7afd... Commit themes to AOKP:
             recreateStatusBar();
-=======
-=======
->>>>>>> fafd6f9... Commit themes to AOKP:
-<<<<<<< HEAD
-=======
->>>>>>> fafd6f9... Commit themes to AOKP:
-=======
->>>>>>> fafd6f9... Commit themes to AOKP:
-=======
->>>>>>> fafd6f9... Commit themes to AOKP:
-=======
->>>>>>> parent of 26c7afd... Commit themes to AOKP:
             try {
                 Runtime.getRuntime().exec("pkill -TERM -f com.android.systemui");
             } catch (IOException e) {
                 // we're screwed here fellas
             }
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
->>>>>>> fafd6f9... Commit themes to AOKP:
-=======
->>>>>>> fafd6f9... Commit themes to AOKP:
-=======
->>>>>>> fafd6f9... Commit themes to AOKP:
-=======
-=======
->>>>>>> parent of 26c7afd... Commit themes to AOKP:
->>>>>>> fafd6f9... Commit themes to AOKP:
-=======
->>>>>>> fafd6f9... Commit themes to AOKP:
         } else {
 
             if (mClearButton instanceof TextView) {

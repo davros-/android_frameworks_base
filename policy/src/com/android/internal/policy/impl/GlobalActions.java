@@ -57,34 +57,8 @@ import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
 
 import com.android.internal.app.ThemeUtils;
->>>>>>> fafd6f9... Commit themes to AOKP:
-=======
-
-import com.android.internal.app.ThemeUtils;
->>>>>>> fafd6f9... Commit themes to AOKP:
-=======
-
-import com.android.internal.app.ThemeUtils;
->>>>>>> fafd6f9... Commit themes to AOKP:
-=======
->>>>>>> parent of 26c7afd... Commit themes to AOKP:
-=======
-
-import com.android.internal.app.ThemeUtils;
->>>>>>> fafd6f9... Commit themes to AOKP:
-=======
-
-import com.android.internal.app.ThemeUtils;
->>>>>>> fafd6f9... Commit themes to AOKP:
 
 import java.util.ArrayList;
 import java.util.List;
@@ -114,29 +88,7 @@ class GlobalActions implements DialogInterface.OnDismissListener, DialogInterfac
     private final Context mContext;
     private final WindowManagerFuncs mWindowManagerFuncs;
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
     private Context mUiContext;
->>>>>>> fafd6f9... Commit themes to AOKP:
-=======
-    private Context mUiContext;
->>>>>>> fafd6f9... Commit themes to AOKP:
-=======
-    private Context mUiContext;
->>>>>>> fafd6f9... Commit themes to AOKP:
-=======
->>>>>>> parent of 26c7afd... Commit themes to AOKP:
-=======
-    private Context mUiContext;
->>>>>>> fafd6f9... Commit themes to AOKP:
-=======
-    private Context mUiContext;
->>>>>>> fafd6f9... Commit themes to AOKP:
     private final AudioManager mAudioManager;
 
     private ArrayList<Action> mItems;
@@ -198,7 +150,10 @@ class GlobalActions implements DialogInterface.OnDismissListener, DialogInterfac
     public void showDialog(boolean keyguardShowing, boolean isDeviceProvisioned) {
         mKeyguardShowing = keyguardShowing;
         mDeviceProvisioned = isDeviceProvisioned;
-        if (mDialog != null && mUiContext == null) {
+        if (mDialog != null) {
+            if (mUiContext != null) {
+                mUiContext = null;
+            }
             mDialog.dismiss();
             mDialog = null;
             // Show delayed, so that the dismiss of the previous dialog completes
@@ -407,7 +362,7 @@ class GlobalActions implements DialogInterface.OnDismissListener, DialogInterfac
 
         mAdapter = new MyAdapter();
 
-        final AlertDialog.Builder ab = new AlertDialog.Builder(getUiContext());
+        final AlertDialog.Builder ab = new AlertDialog.Builder(mContext);
 
         ab.setAdapter(mAdapter, this)
                 .setInverseBackgroundForced(true);
@@ -665,8 +620,7 @@ class GlobalActions implements DialogInterface.OnDismissListener, DialogInterfac
 
         public View getView(int position, View convertView, ViewGroup parent) {
             Action action = getItem(position);
-            final Context context = getUiContext();
-            return action.create(context, convertView, parent, LayoutInflater.from(context));
+            return action.create(mContext, convertView, parent, LayoutInflater.from(mContext));
         }
     }
 
