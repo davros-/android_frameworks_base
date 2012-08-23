@@ -40,9 +40,8 @@
             android:id="@+id/nav_buttons"
             android:animateLayoutChanges="true"
             >
-<<<<<<< HEAD
+
             <include layout="@layout/mid_navigation_bar_port"/>
-=======
 
             <!-- navigation controls -->
             <View
@@ -101,7 +100,6 @@
                 android:contentDescription="@string/accessibility_menu"
                 systemui:glowBackground="@drawable/ic_sysbar_highlight"
                 />
->>>>>>> parent of d8fdc3d... update
         </LinearLayout>
 
         <!-- lights out layout to match exactly -->
