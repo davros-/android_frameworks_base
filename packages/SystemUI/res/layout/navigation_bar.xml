@@ -41,7 +41,6 @@
             android:animateLayoutChanges="true"
             >
 
-            <include layout="@layout/mid_navigation_bar_port"/>
 
             <!-- navigation controls -->
             <View
