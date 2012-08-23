@@ -96,7 +96,7 @@ public class PhoneStatusBarView extends FrameLayout {
     @Override
     protected void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        //mService.onBarViewDetached();
+        mService.onBarViewDetached();
     }
  
     @Override
