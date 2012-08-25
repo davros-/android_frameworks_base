@@ -227,8 +227,7 @@ public class SignalClusterView
     }
 
     private void updateSignalClusterStyle() {
-        if (!mIsAirplaneMode)
-            mMobileGroup.setVisibility(mSignalClusterStyle != SIGNAL_CLUSTER_STYLE_NORMAL ? View.GONE : View.VISIBLE);
+        mMobileGroup.setVisibility(mSignalClusterStyle != SIGNAL_CLUSTER_STYLE_NORMAL ? View.GONE : View.VISIBLE);
     }
 
     private void updateSettings() {

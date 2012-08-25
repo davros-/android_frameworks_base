@@ -78,8 +78,9 @@ import com.android.systemui.statusbar.NotificationData;
 import com.android.systemui.statusbar.SignalClusterView;
 import com.android.systemui.statusbar.StatusBarIconView;
 import com.android.systemui.statusbar.NotificationData.Entry;
+import com.android.systemui.statusbar.policy.CenterClock;
+import com.android.systemui.statusbar.policy.Clock;
 import com.android.systemui.statusbar.policy.BatteryController;
-import com.android.systemui.statusbar.policy.DockBatteryController;
 import com.android.systemui.statusbar.policy.BluetoothController;
 import com.android.systemui.statusbar.policy.CompatModeButton;
 import com.android.systemui.statusbar.policy.LocationController;
@@ -88,6 +89,7 @@ import com.android.systemui.statusbar.policy.NotificationRowLayout;
 import com.android.systemui.statusbar.policy.Prefs;
 
 import java.io.FileDescriptor;
+import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 
@@ -164,13 +166,10 @@ public class TabletStatusBar extends BaseStatusBar implements
     int mNotificationFlingVelocity;
 
     BatteryController mBatteryController;
-    DockBatteryController mDockBatteryController;
     BluetoothController mBluetoothController;
     LocationController mLocationController;
     NetworkController mNetworkController;
     DoNotDisturb mDoNotDisturb;
-
-    private boolean mHasDockBattery;
 
     ViewGroup mBarContents;
 
@@ -193,7 +192,7 @@ public class TabletStatusBar extends BaseStatusBar implements
     private CompatModePanel mCompatModePanel;
 
     // clock
-    private boolean mShowClock;
+    private int mClockStyle;
 
     private int mSystemUiVisibility = 0;
 
@@ -282,14 +281,6 @@ public class TabletStatusBar extends BaseStatusBar implements
         mBatteryController.addIconView((ImageView)mNotificationPanel.findViewById(R.id.battery));
         mBatteryController.addLabelView(
                 (TextView)mNotificationPanel.findViewById(R.id.battery_text));
-
-        if (mHasDockBattery) {
-            mDockBatteryController.addIconView((ImageView)mNotificationPanel.findViewById(R.id.dock_battery));
-            mDockBatteryController.addLabelView(
-                    (TextView)mNotificationPanel.findViewById(R.id.dock_battery_text));
-        } else {
-            mNotificationPanel.findViewById(R.id.dock_battery_text).setVisibility(View.GONE);
-        }
 
         // Bt
         mBluetoothController.addIconView(
@@ -421,40 +412,6 @@ public class TabletStatusBar extends BaseStatusBar implements
         super.start(); // will add the main bar view
     }
 
-    private static void copyNotifications(ArrayList<Pair<IBinder, StatusBarNotification>> dest,
-            NotificationData source) {
-        int N = source.size();
-        for (int i = 0; i < N; i++) {
-            NotificationData.Entry entry = source.get(i);
-            dest.add(Pair.create(entry.key, entry.notification));
-        }
-    }
-
-    private void recreateStatusBar() {
-        mRecreating = true;
-        mStatusBarContainer.removeAllViews();
-
-        // extract notifications.
-        int nNotifs = mNotificationData.size();
-        ArrayList<Pair<IBinder, StatusBarNotification>> notifications =
-                new ArrayList<Pair<IBinder, StatusBarNotification>>(nNotifs);
-        copyNotifications(notifications, mNotificationData);
-        mNotificationData.clear();
-
-        mStatusBarContainer.addView(makeStatusBarView());
-
-        // recreate notifications.
-        for (int i = 0; i < nNotifs; i++) {
-            Pair<IBinder, StatusBarNotification> notifData = notifications.get(i);
-            addNotificationViews(notifData.first, notifData.second);
-        }
-
-        setAreThereNotifications();
-
-        mRecreating = false;
-    }
-
-
     @Override
     protected void onConfigurationChanged(Configuration newConfig) {
         // detect theme change.
@@ -462,7 +419,12 @@ public class TabletStatusBar extends BaseStatusBar implements
         if (newTheme != null &&
                 (mCurrentTheme == null || !mCurrentTheme.equals(newTheme))) {
             mCurrentTheme = (CustomTheme)newTheme.clone();
-            recreateStatusBar();
+            // restart systemui
+            try {
+                Runtime.getRuntime().exec("pkill -TERM -f com.android.systemui");
+            } catch (IOException e) {
+                // we're screwed here fellas
+            }
         }
         loadDimens();
         mNotificationPanelParams.height = getNotificationPanelHeight();
@@ -581,17 +543,6 @@ public class TabletStatusBar extends BaseStatusBar implements
 
         mBatteryController = new BatteryController(mContext);
         mBatteryController.addIconView((ImageView)sb.findViewById(R.id.battery));
-
-        mHasDockBattery = mContext.getResources().getBoolean(
-                com.android.internal.R.bool.config_hasDockBattery);
-
-        if (mHasDockBattery) {
-            mDockBatteryController = new DockBatteryController(mContext);
-            mDockBatteryController.addIconView((ImageView)sb.findViewById(R.id.dock_battery));
-            mDockBatteryController.addLabelView(
-                    (TextView)sb.findViewById(R.id.dock_battery_text));
-        }
-
         mBluetoothController = new BluetoothController(mContext);
         mBluetoothController.addIconView((ImageView)sb.findViewById(R.id.bluetooth));
 
@@ -987,12 +938,18 @@ public class TabletStatusBar extends BaseStatusBar implements
 
     public void showClock(boolean show) {
         ContentResolver resolver = mContext.getContentResolver();
-        View clock = mBarContents.findViewById(R.id.clock);
+        Clock clock = (Clock) mBarContents.findViewById(R.id.clock);
+        CenterClock cclock = (CenterClock) mBarContents.findViewById(R.id.center_clock);
         View network_text = mBarContents.findViewById(R.id.network_text);
-        mShowClock = (Settings.System.getInt(resolver,
-                Settings.System.STATUS_BAR_CLOCK, 1) == 1);
-        if (clock != null) {
-            clock.setVisibility(show ? (mShowClock ? View.VISIBLE : View.GONE) : View.GONE);
+        mClockStyle = Settings.System.getInt(resolver,
+                Settings.System.STATUS_BAR_CLOCK_STYLE, 1);
+        if (mClockStyle != 0 && clock != null && cclock != null) {
+            clock.updateClockVisibility(show);
+            cclock.updateClockVisibility(show);
+        }
+        else{
+            clock.updateClockVisibility(false);
+            cclock.updateClockVisibility(false);
         }
         if (network_text != null) {
             network_text.setVisibility((!show) ? View.VISIBLE : View.GONE);
