@@ -312,7 +312,6 @@ status_t BootAnimation::readyToRun() {
             free(crappyBuffer);
         } else {
             ALOGW("Unable to allocate memory to preload the animation");
-            LOGW("Unable to allocate memory to preload the animation");
         }
         fclose(fd);
     }
