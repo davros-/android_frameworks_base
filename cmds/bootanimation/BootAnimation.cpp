@@ -286,6 +286,7 @@ status_t BootAnimation::readyToRun() {
         mAndroidAnimation = false;
     }
 
+
 #ifdef PRELOAD_BOOTANIMATION
     // Preload the bootanimation zip on memory, so we don't stutter
     // when showing the animation
@@ -316,6 +317,7 @@ status_t BootAnimation::readyToRun() {
         fclose(fd);
     }
 #endif
+
     return NO_ERROR;
 }
 
@@ -532,8 +534,6 @@ bool BootAnimation::movie()
         const int noTextureCache = ((animation.width * animation.height * fcount) >
                                  48 * 1024 * 1024) ? 1 : 0;
         #endif
-        const int noTextureCache = ((animation.width * animation.height * fcount) >
-                                 48 * 1024 * 1024) ? 1 : 0;
 
         glBindTexture(GL_TEXTURE_2D, 0);
 
@@ -604,8 +604,6 @@ bool BootAnimation::movie()
         }
 
         // free the textures for this part
-        if (part.count != 1 && !noTextureCache) {
-            for (int j=0 ; j<fcount ; j++) {
         if (part.count != 1 && !noTextureCache) {
             for (size_t j=0 ; j<fcount ; j++) {
                 const Animation::Frame& frame(part.frames[j]);
