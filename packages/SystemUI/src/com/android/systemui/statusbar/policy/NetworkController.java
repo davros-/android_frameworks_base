@@ -571,26 +571,18 @@ public class NetworkController extends BroadcastReceiver {
                             R.string.accessibility_data_connection_HP);
                     break;
                 case TelephonyManager.NETWORK_TYPE_CDMA:
-                    if (!mShowAtLeastThreeGees) {
-                        // display 1xRTT for IS95A/B
-                        mDataIconList = TelephonyIcons.DATA_1X[mInetCondition];
-                        mDataTypeIconId = R.drawable.stat_sys_data_connected_1x;
-                        mContentDescriptionDataType = mContext.getString(
-                                R.string.accessibility_data_connection_cdma);
-                        break;
-                    } else {
-                        // fall through
-                    }
+                    // display 1xRTT for IS95A/B
+                    mDataIconList = TelephonyIcons.DATA_1X[mInetCondition];
+                    mDataTypeIconId = R.drawable.stat_sys_data_connected_1x;
+                    mContentDescriptionDataType = mContext.getString(
+                            R.string.accessibility_data_connection_cdma);
+                    break;
                 case TelephonyManager.NETWORK_TYPE_1xRTT:
-                    if (!mShowAtLeastThreeGees) {
-                        mDataIconList = TelephonyIcons.DATA_1X[mInetCondition];
-                        mDataTypeIconId = R.drawable.stat_sys_data_connected_1x;
-                        mContentDescriptionDataType = mContext.getString(
-                                R.string.accessibility_data_connection_cdma);
-                        break;
-                    } else {
-                        // fall through
-                    }
+                    mDataIconList = TelephonyIcons.DATA_1X[mInetCondition];
+                    mDataTypeIconId = R.drawable.stat_sys_data_connected_1x;
+                    mContentDescriptionDataType = mContext.getString(
+                            R.string.accessibility_data_connection_cdma);
+                    break;
                 case TelephonyManager.NETWORK_TYPE_EVDO_0: //fall through
                 case TelephonyManager.NETWORK_TYPE_EVDO_A:
                 case TelephonyManager.NETWORK_TYPE_EVDO_B:
