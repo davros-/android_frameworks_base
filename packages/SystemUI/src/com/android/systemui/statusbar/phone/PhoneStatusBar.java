@@ -793,6 +793,12 @@ public class PhoneStatusBar extends BaseStatusBar {
         updateSearchPanel();
     }
 
+    protected void setNavigationBarParams(){
+        int opacity = Settings.System.getInt(mContext.getContentResolver(),
+                Settings.System.NAV_BAR_TRANSPARENCY, 100);
+        mNavigationBarView.getBackground().setAlpha(Math.round((opacity * 255) / 100));
+    }
+
     // For small-screen devices (read: phones) that lack hardware navigation buttons
     private void addNavigationBar() {
         if (DEBUG) Slog.v(TAG, "addNavigationBar: about to add " + mNavigationBarView);
@@ -2613,7 +2619,17 @@ public class PhoneStatusBar extends BaseStatusBar {
         if (newTheme != null &&
                 (mCurrentTheme == null || !mCurrentTheme.equals(newTheme))) {
             mCurrentTheme = (CustomTheme)newTheme.clone();
+<<<<<<< HEAD
             recreateStatusBar();
+=======
+            try {
+                Runtime.getRuntime().exec("pkill -TERM -f com.android.systemui");
+            } catch (IOException e) {
+                // we're screwed here fellas
+            }
+            setStatusBarParams(mStatusBarView);
+            setNavigationBarParams();
+>>>>>>> d9736ce... NavBar transparency (1/2)
         } else {
 
             if (mClearButton instanceof TextView) {
@@ -2833,4 +2849,119 @@ public class PhoneStatusBar extends BaseStatusBar {
         public void setBounds(Rect bounds) {
         }
     }
+<<<<<<< HEAD
+=======
+
+    class SettingsObserver extends ContentObserver {
+        SettingsObserver(Handler handler) {
+            super(handler);
+        }
+
+        void observe() {
+            ContentResolver resolver = mContext.getContentResolver();
+            resolver.registerContentObserver(Settings.System.getUriFor(
+                    Settings.System.STATUS_BAR_BRIGHTNESS_SLIDER), false, this);
+            resolver.registerContentObserver(Settings.System.getUriFor(
+                    Settings.System.STATUS_BAR_BRIGHTNESS_CONTROL), false, this);
+            resolver.registerContentObserver(Settings.System.getUriFor(
+                    Settings.System.SCREEN_BRIGHTNESS_MODE), false, this);
+            resolver.registerContentObserver(Settings.System.getUriFor(
+                    Settings.System.EXPANDED_VIEW_WIDGET), false, this);
+            resolver.registerContentObserver(Settings.System.getUriFor(
+                    Settings.System.STATUS_BAR_TRANSPARENCY), false, this);
+            resolver.registerContentObserver(Settings.System.getUriFor(
+                    Settings.System.NAV_BAR_TRANSPARENCY), false, this);
+            update();
+        }
+
+        @Override
+        public void onChange(boolean selfChange) {
+            updateSettings();
+            update();
+        }
+
+        public void update() {
+            ContentResolver resolver = mContext.getContentResolver();
+            setStatusBarParams(mStatusBarView);
+            setNavigationBarParams();
+        }
+    }
+
+    private class BrightNessContentObserver extends ContentObserver {
+
+        public BrightNessContentObserver() {
+            super(new Handler());
+        }
+
+        @Override
+        public void onChange(boolean selfChange) {
+            mIsAutoBrightNess = checkAutoBrightNess();
+        }
+    }
+
+    private boolean checkAutoBrightNess() {
+        return Settings.System.getInt(mContext.getContentResolver(),
+                Settings.System.SCREEN_BRIGHTNESS_MODE,
+                Settings.System.SCREEN_BRIGHTNESS_MODE_MANUAL) == Settings.System.SCREEN_BRIGHTNESS_MODE_AUTOMATIC;
+    }
+
+    private void updatePropFactorValue() {
+        mPropFactor = Float.valueOf((float) android.os.PowerManager.BRIGHTNESS_ON
+                / Integer.valueOf(mDisplay.getWidth()).floatValue());
+    }
+
+    private void doBrightNess(MotionEvent e) {
+        int screenBrightness;
+        try {
+            screenBrightness = checkMinMax(Float.valueOf((e.getRawX() * mPropFactor.floatValue()))
+                    .intValue());
+            Settings.System.putInt(mContext.getContentResolver(), "screen_brightness",
+                    screenBrightness);
+        } catch (NullPointerException e2) {
+            return;
+        }
+        double percent = ((screenBrightness / (double) 255) * 100) + 0.5;
+        mBrightnessPercent.setText((int)percent + "%");
+        mBrightnessPercent.setVisibility(View.VISIBLE);
+        try {
+            IPowerManager pw = IPowerManager.Stub.asInterface(ServiceManager.getService("power"));
+            if (pw != null) {
+                pw.setBacklightBrightness(screenBrightness);
+            }
+        } catch (RemoteException e1) {
+        }
+    }
+
+    private void stopBrightnessMessages() {
+        if (mIsStatusBarBrightNess && mHandler.hasMessages(MSG_STATUSBAR_BRIGHTNESS)) {
+            mHandler.removeMessages(MSG_STATUSBAR_BRIGHTNESS);
+        }
+        mBrightnessPercent.setVisibility(View.GONE);
+        mBrightnessPercent.setText("");
+    }
+
+    private int checkMinMax(int brightness) {
+        int min = 0;
+        int max = 255;
+
+        if (min > brightness) // brightness < 0x1E
+            return min;
+        else if (max < brightness) { // brightness > 0xFF
+            return max;
+        }
+
+        return brightness;
+    }
+
+    public void updateSettings() {
+        ContentResolver resolver = mContext.getContentResolver();
+        mIsStatusBarBrightNess = Settings.System.getBoolean(mStatusBarView.getContext()
+                .getContentResolver(), Settings.System.STATUS_BAR_BRIGHTNESS_SLIDER, true);
+        boolean autoBrightness = Settings.System.getInt(
+                resolver, Settings.System.SCREEN_BRIGHTNESS_MODE, 0) ==
+                Settings.System.SCREEN_BRIGHTNESS_MODE_AUTOMATIC;
+        mBrightnessControl = !autoBrightness && Settings.System.getInt(
+                resolver, Settings.System.STATUS_BAR_BRIGHTNESS_CONTROL, 0) == 1;
+    }
+>>>>>>> d9736ce... NavBar transparency (1/2)
 }
