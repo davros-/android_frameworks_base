@@ -491,7 +491,8 @@ class ServerThread extends Thread {
                 ServiceManager.addService(Context.PROFILE_SERVICE, profile);
             } catch (Throwable e) {
                 Slog.e(TAG, "Failure starting Profile Manager", e);
-                if (accountManager != null)
+            try {
+	        if (accountManager != null)
                     accountManager.systemReady();
             } catch (Throwable e) {
                 reportWtf("making Account Manager Service ready", e);
