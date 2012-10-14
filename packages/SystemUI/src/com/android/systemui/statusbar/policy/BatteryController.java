@@ -42,23 +42,35 @@ public class BatteryController extends BroadcastReceiver {
     private ArrayList<TextView> mLabelViews = new ArrayList<TextView>();
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 7282ff9... Add cm circle battery mod (credit Sven-Dawitz)
     private static final int BATTERY_STYLE_NORMAL         = 0;
     private static final int BATTERY_STYLE_PERCENT        = 1;
     /***
      * BATTERY_STYLE_CIRCLE* cannot be handled in this controller, since we cannot get views from
      * statusbar here. Yet it is listed for completion and not to confuse at future updates
+<<<<<<< HEAD
      * See CmCircleBattery.java for more info
      *
      * set to public to be reused by CmCircleBattery
+=======
+     * See CircleBattery.java for more info
+     *
+     * set to public to be reused by CircleBattery
+>>>>>>> 7282ff9... Add cm circle battery mod (credit Sven-Dawitz)
      */
     public  static final int BATTERY_STYLE_CIRCLE         = 2;
     public  static final int BATTERY_STYLE_CIRCLE_PERCENT = 3;
     private static final int BATTERY_STYLE_GONE           = 4;
+<<<<<<< HEAD
     private static final int BATTERY_STYLE_DIGITAL = 5;
 =======
     private static final int BATTERY_STYLE_NORMAL  = 0;
     private static final int BATTERY_STYLE_TEXT    = 1;
     private static final int BATTERY_STYLE_GONE    = 2;
+=======
+>>>>>>> 7282ff9... Add cm circle battery mod (credit Sven-Dawitz)
 
 >>>>>>> parent of f3cf59d... cm circle battery mod
     private static final int BATTERY_ICON_STYLE_NORMAL      = R.drawable.stat_sys_battery;
@@ -142,11 +154,11 @@ public class BatteryController extends BroadcastReceiver {
         int mText = View.GONE;
         int mIconStyle = BATTERY_ICON_STYLE_NORMAL;
 
-        if (mBatteryStyle == 0) {
+        if (mBatteryStyle == BATTERY_STYLE_NORMAL) {
             mIcon = (View.VISIBLE);
             mIconStyle = mBatteryPlugged ? BATTERY_ICON_STYLE_CHARGE
                     : BATTERY_ICON_STYLE_NORMAL;
-        } else if (mBatteryStyle == 1) {
+        } else if (mBatteryStyle == BATTERY_STYLE_PERCENT) {
             mIcon = (View.VISIBLE);
             mText = (View.VISIBLE);
             mIconStyle = mBatteryPlugged ? BATTERY_ICON_STYLE_CHARGE_MIN
