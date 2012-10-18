@@ -1192,23 +1192,10 @@ public class PhoneStatusBar extends BaseStatusBar {
     public void showClock(boolean show) {
         if (mStatusBarView == null) return;
         ContentResolver resolver = mContext.getContentResolver();
-<<<<<<< HEAD
-        mClockStyle = (Settings.System.getInt(resolver,Settings.System.STATUS_BAR_CLOCK_STYLE, 1));
-        Clock clock = (Clock) mStatusBarView.findViewById(R.id.clock);
-        CenterClock cclock = (CenterClock) mStatusBarView.findViewById(R.id.center_clock);
-        if(mClockStyle != 0 && clock !=null && cclock != null){
-            clock.updateClockVisibility(show);     
-            cclock.updateClockVisibility(show);
-        }
-        else{
-            clock.updateClockVisibility(false);
-            cclock.updateClockVisibility(false);
-=======
         mShowClock = (Settings.System.getInt(resolver,
                 Settings.System.STATUS_BAR_CLOCK, 1) == 1);
         if (mClockView != null) {
             mClockView.setVisibility(show ? (mShowClock ? View.VISIBLE : View.GONE) : View.GONE);
->>>>>>> 201cbef... NotificationBar: Force DateView to collapse to gain space for clear_all_button
         }
     }
 
@@ -1943,11 +1930,7 @@ public class PhoneStatusBar extends BaseStatusBar {
             final View systemIcons = mStatusBarView.findViewById(R.id.statusIcons);
             final View signal = mStatusBarView.findViewById(R.id.signal_cluster);
             final View battery = mStatusBarView.findViewById(R.id.battery);
-<<<<<<< HEAD
-            final View clock = mStatusBarView.findViewById(R.id.clock);
-=======
             final View batteryText = mStatusBarView.findViewById(R.id.battery_text);
->>>>>>> 201cbef... NotificationBar: Force DateView to collapse to gain space for clear_all_button
 
             mLightsOutAnimation = new AnimatorSet();
             mLightsOutAnimation.playTogether(
@@ -1955,12 +1938,8 @@ public class PhoneStatusBar extends BaseStatusBar {
                     ObjectAnimator.ofFloat(systemIcons, View.ALPHA, 0),
                     ObjectAnimator.ofFloat(signal, View.ALPHA, 0),
                     ObjectAnimator.ofFloat(battery, View.ALPHA, 0.5f),
-<<<<<<< HEAD
-                    ObjectAnimator.ofFloat(clock, View.ALPHA, 0.5f)
-=======
                     ObjectAnimator.ofFloat(batteryText, View.ALPHA, 0),
                     ObjectAnimator.ofFloat(mClockView, View.ALPHA, 0.5f)
->>>>>>> 201cbef... NotificationBar: Force DateView to collapse to gain space for clear_all_button
                 );
             mLightsOutAnimation.setDuration(750);
 
@@ -1970,12 +1949,8 @@ public class PhoneStatusBar extends BaseStatusBar {
                     ObjectAnimator.ofFloat(systemIcons, View.ALPHA, 1),
                     ObjectAnimator.ofFloat(signal, View.ALPHA, 1),
                     ObjectAnimator.ofFloat(battery, View.ALPHA, 1),
-<<<<<<< HEAD
-                    ObjectAnimator.ofFloat(clock, View.ALPHA, 1)
-=======
                     ObjectAnimator.ofFloat(batteryText, View.ALPHA, 1),
                     ObjectAnimator.ofFloat(mClockView, View.ALPHA, 1)
->>>>>>> 201cbef... NotificationBar: Force DateView to collapse to gain space for clear_all_button
                 );
             mLightsOnAnimation.setDuration(250);
         }
