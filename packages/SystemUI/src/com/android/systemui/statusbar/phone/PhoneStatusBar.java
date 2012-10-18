@@ -1192,8 +1192,7 @@ public class PhoneStatusBar extends BaseStatusBar {
     public void showClock(boolean show) {
         if (mStatusBarView == null) return;
         ContentResolver resolver = mContext.getContentResolver();
-        mShowClock = (Settings.System.getInt(resolver,
-                Settings.System.STATUS_BAR_CLOCK, 1) == 1);
+        mShowClock = (Settings.System.getInt(resolver,Settings.System.STATUS_BAR_CLOCK, 1) == 1);
         if (mClockView != null) {
             mClockView.setVisibility(show ? (mShowClock ? View.VISIBLE : View.GONE) : View.GONE);
         }
