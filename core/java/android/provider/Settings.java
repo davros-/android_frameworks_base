@@ -2882,7 +2882,6 @@ public final class Settings {
             POWER_MENU_SCREENSHOT_ENABLED,
             POWER_MENU_REBOOT_ENABLED,
             POWER_MENU_PROFILES_ENABLED,
-            POWER_MENU_AIRPLANE_ENABLED,
             POWER_MENU_SILENT_ENABLED,
             LOCKSCREEN_VIBRATE_ENABLED,
         };
