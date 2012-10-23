@@ -110,6 +110,7 @@ class GlobalActions implements DialogInterface.OnDismissListener, DialogInterfac
     private Profile mChosenProfile;
 
     private static final String POWER_MENU_SCREENSHOT_ENABLED = "power_menu_screenshot_enabled";
+    private static final String POWER_MENU_AIRPLANEMODE_ENABLED = "power_menu_airplanemode_enabled";
 
     /**
      * @param context everything needs a context :(
@@ -322,9 +323,9 @@ class GlobalActions implements DialogInterface.OnDismissListener, DialogInterfac
         }
 
         // next: airplane mode
-        if (Settings.System.getInt(mContext.getContentResolver(),
-                Settings.System.POWER_MENU_AIRPLANE_ENABLED, 1) == 1) {
-            mItems.add(mAirplaneModeOn);
+        // only shown if enabled, enabled by default
+        if (Settings.System.getInt(mContext.getContentResolver(), POWER_MENU_AIRPLANEMODE_ENABLED, 1) == 1) {
+           mItems.add(mAirplaneModeOn);
         }
 
         // next: users

@@ -2715,13 +2715,14 @@ public final class Settings {
          * Whether power menu airplane toggle is enabled
          * @hide
          */
-        public static final String POWER_MENU_AIRPLANE_ENABLED = "power_menu_airplane_enabled";
+        public static final String POWER_MENU_AIRPLANEMODE_ENABLED = "power_menu_airplanemode_enabled";
 
         /**
          * Whether power menu silent mode is enabled
          * @hide
          */
         public static final String POWER_MENU_SILENT_ENABLED = "power_menu_silent_enabled";
+
 
         /**
          * Whether to enable custom rebindings of the actions performed on
