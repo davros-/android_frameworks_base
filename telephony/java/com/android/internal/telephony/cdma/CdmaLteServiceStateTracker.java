@@ -275,7 +275,7 @@ public class CdmaLteServiceStateTracker extends CdmaServiceStateTracker {
         if (DBG) {
             log("pollStateDone:"
                 + " hasRegistered=" + hasRegistered
-                + " hasDeegistered=" + hasDeregistered
+                + " hasDergistered=" + hasDeregistered
                 + " hasCdmaDataConnectionAttached=" + hasCdmaDataConnectionAttached
                 + " hasCdmaDataConnectionDetached=" + hasCdmaDataConnectionDetached
                 + " hasCdmaDataConnectionChanged=" + hasCdmaDataConnectionChanged
