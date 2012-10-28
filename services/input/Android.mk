@@ -40,6 +40,19 @@ LOCAL_SHARED_LIBRARIES := \
 LOCAL_C_INCLUDES := \
     external/skia/include/core
 
+ifeq ($(BOARD_USE_LEGACY_TOUCHSCREEN),true)
+LOCAL_CFLAGS += -DLEGACY_TOUCHSCREEN
+endif
+
+ifeq ($(BOARD_USE_LEGACY_TRACKPAD),true)
+LOCAL_CFLAGS += -DLEGACY_TRACKPAD
+endif
+
+ifeq ($(BOARD_USES_ALSA_AUDIO),true)
+    LOCAL_CFLAGS += -DALSA_HEADSET_DETECTION
+endif
+
+>>>>>>> 12aade4... frameworks/base: Add support for wired headset detection
 LOCAL_MODULE:= libinput
 
 LOCAL_MODULE_TAGS := optional
