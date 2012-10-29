@@ -41,6 +41,7 @@ public class BatteryController extends BroadcastReceiver {
     private ArrayList<ImageView> mIconViews = new ArrayList<ImageView>();
     private ArrayList<TextView> mLabelViews = new ArrayList<TextView>();
 
+<<<<<<< HEAD
     private static final int BATTERY_STYLE_NORMAL         = 0;
     private static final int BATTERY_STYLE_PERCENT        = 1;
     /***
@@ -54,6 +55,12 @@ public class BatteryController extends BroadcastReceiver {
     public  static final int BATTERY_STYLE_CIRCLE_PERCENT = 3;
     private static final int BATTERY_STYLE_GONE           = 4;
     private static final int BATTERY_STYLE_DIGITAL = 5;
+=======
+    private static final int BATTERY_STYLE_NORMAL  = 0;
+    private static final int BATTERY_STYLE_TEXT    = 1;
+    private static final int BATTERY_STYLE_GONE    = 2;
+
+>>>>>>> parent of f3cf59d... cm circle battery mod
     private static final int BATTERY_ICON_STYLE_NORMAL      = R.drawable.stat_sys_battery;
     private static final int BATTERY_ICON_STYLE_CHARGE      = R.drawable.stat_sys_battery_charge;
     private static final int BATTERY_ICON_STYLE_NORMAL_MIN  = R.drawable.stat_sys_battery_min;
@@ -135,11 +142,11 @@ public class BatteryController extends BroadcastReceiver {
         int mText = View.GONE;
         int mIconStyle = BATTERY_ICON_STYLE_NORMAL;
 
-        if (mBatteryStyle == BATTERY_STYLE_NORMAL) {
+        if (mBatteryStyle == 0) {
             mIcon = (View.VISIBLE);
             mIconStyle = mBatteryPlugged ? BATTERY_ICON_STYLE_CHARGE
                     : BATTERY_ICON_STYLE_NORMAL;
-        } else if (mBatteryStyle == BATTERY_STYLE_PERCENT) {
+        } else if (mBatteryStyle == 1) {
             mIcon = (View.VISIBLE);
             mText = (View.VISIBLE);
             mIconStyle = mBatteryPlugged ? BATTERY_ICON_STYLE_CHARGE_MIN
