@@ -3539,12 +3539,12 @@ public class AudioService extends IAudioService.Stub implements OnFinished {
             } else if (action.equals(Intent.ACTION_HEADSET_PLUG)) {
                 state = intent.getIntExtra("state", 0);
                 if (state == 1) {
-                    //avoids connection glitches
-                    if (noDelayInATwoDP)
-                        setBluetoothA2dpOnInt(false);
                     // Headset plugged in
                     // Avoid connection glitches
-		
+		    if (noDelayInATwoDP) {
+                        setBluetoothA2dpOnInt(false);
+                    }
+
                     // Volume restore capping
                     final boolean capVolumeRestore = Settings.System.getInt(mContentResolver,
                             Settings.System.SAFE_HEADSET_VOLUME_RESTORE, 1) == 1;
@@ -3568,6 +3568,7 @@ public class AudioService extends IAudioService.Stub implements OnFinished {
                         }
                     }
                 } else {
+                    // Headset disconnected
                     //avoid connection glitches
                     if (noDelayInATwoDP)
                         setBluetoothA2dpOnInt(true);
