@@ -432,8 +432,6 @@ public final class CallManager {
                 }
                 break;
         }
-<<<<<<< HEAD
-=======
 
         if (state == Phone.State.RINGING && lastAudioMode != AudioManager.MODE_RINGTONE) {
             context.registerReceiver(mRingVolumeChangeReceiver,
@@ -465,7 +463,6 @@ public final class CallManager {
             audioManager.setParameters(param);
         }
 
->>>>>>> e461cd3... Fix ringing audio focus handling.
     }
 
     private void updateRingingAudioFocus(Context context) {
