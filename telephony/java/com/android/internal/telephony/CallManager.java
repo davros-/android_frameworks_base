@@ -432,37 +432,6 @@ public final class CallManager {
                 }
                 break;
         }
-
-        if (state == Phone.State.RINGING && lastAudioMode != AudioManager.MODE_RINGTONE) {
-            context.registerReceiver(mRingVolumeChangeReceiver,
-                    new IntentFilter(AudioManager.VOLUME_CHANGED_ACTION));
-        } else if (state != Phone.State.RINGING && lastAudioMode == AudioManager.MODE_RINGTONE) {
-            context.unregisterReceiver(mRingVolumeChangeReceiver);
-        }
-
-        // Set additional audio parameters needed for incall audio
-        String[] audioParams = context.getResources().getStringArray(
-                com.android.internal.R.array.config_telephony_set_audioparameters);
-
-        for (String parameter : audioParams) {
-            String[] aPValues = parameter.split("=");
-
-            if (TextUtils.isEmpty(aPValues[1])) {
-                aPValues[1] = "on";
-            }
-
-            if (TextUtils.isEmpty(aPValues[2])) {
-                aPValues[2] = "off";
-            }
-
-            String value = (audioManager.getMode() == AudioManager.MODE_IN_CALL)
-                    ? aPValues[1] : aPValues[2];
-            String param = aPValues[0] + "=" + value;
-
-            Log.d(LOG_TAG, "setAudioMode(): " + param);
-            audioManager.setParameters(param);
-        }
-
     }
 
     private void updateRingingAudioFocus(Context context) {
