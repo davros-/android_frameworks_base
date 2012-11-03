@@ -2448,8 +2448,6 @@ public final class GsmDataConnectionTracker extends DataConnectionTracker {
             }
         }
         if (mAllApns != null) {
-<<<<<<< HEAD
-=======
             // Use the preferred APN if it can handle the type being requested
             if (canSetPreferApn && mPreferredApn != null) {
                 if (DBG) {
@@ -2466,7 +2464,6 @@ public final class GsmDataConnectionTracker extends DataConnectionTracker {
             }
 
             // Add all the rest of the apns that can handle the requested type
->>>>>>> e6ef5b8... Framework: Fixes mms automatic retrieval (2/2)
             for (ApnSetting apn : mAllApns) {
                 if (apn.canHandleType(requestedApnType)) {
                     if (apn.bearer == 0 || apn.bearer == radioTech) {
