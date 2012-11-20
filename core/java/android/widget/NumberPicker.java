@@ -1397,7 +1397,7 @@ public class NumberPicker extends LinearLayout {
                 setMinValue(0);
             }
             if (getMaxValue() >= displayedValues.length) {
-                setMaxValue(displayedValues.length - 1);
+                setMaxValue(displayedValues.length);
             }
         } else {
             mInputText.setRawInputType(InputType.TYPE_CLASS_NUMBER);
